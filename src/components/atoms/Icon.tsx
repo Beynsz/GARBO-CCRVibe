@@ -1,13 +1,5 @@
 "use client";
-
-/**
- * GARBO â€” Icon Atom
- * SDD Â§3.2.1 FR-1.5 â€” Sidebar + UI icons (Home, Schedule, Announcements,
- * Reports, Alerts, Logout). Minimal and consistent design style.
- *
- * Thin wrapper around lucide-react for consistent sizing and colour tokens.
- */
-
+/** * GARBO — Icon Atom * SDD §3.2.1 FR-1.5 — Sidebar + UI icons (Home, Schedule, Announcements, * Reports, Alerts, Logout, Fleet). Minimal and consistent design style. * * Thin wrapper around lucide-react for consistent sizing and colour tokens. */
 import {
   Home,
   CalendarDays,
@@ -32,8 +24,7 @@ import {
   CheckCircle2,
   XCircle,
   AlertCircle,
-  Filter,
-  Download,
+  Filter,  Download,
   FileText,
   ClipboardList,
   MapPin,
@@ -48,6 +39,7 @@ import {
   ArrowLeft,
   ArrowRight,
   Menu,
+  Truck,
 } from "lucide-react";
 
 export type IconName =
@@ -57,7 +49,7 @@ export type IconName =
   | "info" | "check-circle" | "x-circle" | "alert-circle" | "filter" | "download"
   | "file-text" | "clipboard" | "map-pin" | "clock" | "fuel" | "weight"
   | "calendar" | "refresh" | "eye" | "eye-off" | "more" | "arrow-left"
-  | "arrow-right" | "menu";
+  | "arrow-right" | "menu" | "truck";
 
 const ICON_MAP: Record<IconName, React.ElementType> = {
   home:            Home,
@@ -99,6 +91,7 @@ const ICON_MAP: Record<IconName, React.ElementType> = {
   "arrow-left":    ArrowLeft,
   "arrow-right":   ArrowRight,
   menu:            Menu,
+  truck:           Truck,
 };
 
 interface IconProps {
@@ -116,7 +109,6 @@ export function Icon({
 }: IconProps) {
   const LucideIcon = ICON_MAP[name];
   if (!LucideIcon) return null;
-
   return (
     <LucideIcon
       size={size}

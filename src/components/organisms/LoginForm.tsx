@@ -183,7 +183,7 @@ export function LoginForm() {
         </Button>
       </form>
 
-      {/* ── Forgot password ─────────────────────────────────────────────── */}
+      {/* ── Forgot password & register ─────────────────────────────────── */}
       <p className="mt-5 text-center text-sm text-[var(--color-text-muted)]">
         Forgot your password?{" "}
         <Link
@@ -191,6 +191,15 @@ export function LoginForm() {
           className="text-[var(--color-primary)] font-medium hover:underline focus-visible:underline"
         >
           Reset it here
+        </Link>
+      </p>
+      <p className="mt-3 text-center text-sm text-[var(--color-text-muted)]">
+        New to GARBO?{" "}
+        <Link
+          href="/register"
+          className="text-[var(--color-primary)] font-medium hover:underline focus-visible:underline"
+        >
+          Create an account
         </Link>
       </p>
     </div>

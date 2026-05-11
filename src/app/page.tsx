@@ -10,17 +10,19 @@ import { redirect } from "next/navigation";
 import { createServerClient } from "@supabase/ssr";
 import { cookies } from "next/headers";
 import LandingPage from "./(public)/page";
+import { resolvePublicSupabaseKeys } from "@/lib/supabase/public-env";
 
 export { metadata } from "./(public)/page";
 
 export default async function RootPage() {
-  const cookieStore = cookies();
+  const cookieStore = await cookies();
 
   // Secondary safety check in case middleware is bypassed
   try {
-    const supabase = createServerClient(
-      process.env.NEXT_PUBLIC_SUPABASE_URL!,
-      process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
+    const cfg = resolvePublicSupabaseKeys();
+    if (!cfg) throw new Error("Supabase public env not configured");
+
+    const supabase = createServerClient(cfg.url, cfg.anonKey,
       {
         cookies: {
           getAll() {

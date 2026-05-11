@@ -15,16 +15,16 @@
 import { createServerClient, type CookieOptions } from "@supabase/ssr";
 import { cookies } from "next/headers";
 import type { Database } from "@/types/database.types";
+import { resolvePublicSupabaseKeys } from "@/lib/supabase/public-env";
 
 function getPublicSupabaseEnv(): { url: string; anonKey: string } {
-  const url = process.env.NEXT_PUBLIC_SUPABASE_URL?.trim();
-  const anonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY?.trim();
-  if (!url || !anonKey) {
+  const cfg = resolvePublicSupabaseKeys();
+  if (!cfg) {
     throw new Error(
-      "Missing NEXT_PUBLIC_SUPABASE_URL or NEXT_PUBLIC_SUPABASE_ANON_KEY. Copy .env.example to .env.local and set values from Supabase Dashboard → Settings → API."
+      "Missing Supabase env: set NEXT_PUBLIC_SUPABASE_URL and either NEXT_PUBLIC_SUPABASE_ANON_KEY (legacy) or NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY in .env.local. See Dashboard → Settings → API."
     );
   }
-  return { url, anonKey };
+  return cfg;
 }
 
 function getServiceRoleKey(): string {

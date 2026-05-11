@@ -97,11 +97,14 @@ export default function LandingPage() {
             </span>
           </Link>
 
-          {/* Nav links — matches Image 1 */}
-          <nav className="flex items-center gap-6" aria-label="Main">
-            <NavLink href="/login">LOG IN</NavLink>
-            <NavLink href="#about">ABOUT US</NavLink>
+          {/* Nav links — Updated to include FEED link as requested */}
+            <nav className="flex items-center gap-6" aria-label="Main">
             <NavLink href="/">HOME</NavLink>
+            <NavLink href="#about">ABOUT US</NavLink>
+            {/* Added Feed link based on image_18f180.png navigation requirements */}
+            <NavLink href="/feed">FEED</NavLink> 
+            <NavLink href="/register">SIGN UP</NavLink>
+            <NavLink href="/login">LOG IN</NavLink>
           </nav>
         </div>
       </header>

@@ -1,14 +1,16 @@
 import { type NextRequest, NextResponse } from "next/server";
 import { createServerClient, type CookieOptions } from "@supabase/ssr";
 import type { Database } from "@/types/database.types";
+import { resolvePublicSupabaseKeys } from "@/lib/supabase/public-env";
 
 export async function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
 
   // Guard: if Supabase env vars are missing, skip auth checks entirely.
   // This lets the dev server start and show pages even before .env.local exists.
-  const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
-  const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
+  const cfg = resolvePublicSupabaseKeys();
+  const supabaseUrl = cfg?.url;
+  const supabaseKey = cfg?.anonKey;
 
   if (
     !supabaseUrl ||
@@ -52,10 +54,11 @@ export async function middleware(request: NextRequest) {
     pathname.startsWith("/announcements") ||
     pathname.startsWith("/reports") ||
     pathname.startsWith("/alerts") ||
-    pathname.startsWith("/logbook");
+    pathname.startsWith("/fleet");
 
   const isAuthRoute =
     pathname.startsWith("/login") ||
+    pathname.startsWith("/register") ||
     pathname.startsWith("/reset-password");
 
   if (isDashboardRoute && !user) {

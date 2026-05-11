@@ -136,7 +136,7 @@ export default async function HomePage() {
               Recent Activity
             </h3>
             <Link
-              href="/fleet"
+              href="/logbook"
               className="text-xs text-[var(--color-primary)] hover:underline font-medium"
             >
               View all

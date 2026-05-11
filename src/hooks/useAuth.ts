@@ -6,7 +6,6 @@
  * Provides:
  * - Current user state (loading, user, error)
  * - login()         → email/password sign-in via Supabase
- * - register()      → email/password sign-up (optional email confirm per project settings)
  * - logout()        → sign-out and redirect to /login
  * - resetPassword() → sends password reset email
  * - updatePassword()→ sets new password from reset link
@@ -19,12 +18,7 @@ import { useState, useEffect, useCallback } from "react";
 import { useRouter } from "next/navigation";
 import type { User } from "@supabase/supabase-js";
 import getSupabaseBrowserClient from "../../supabase/client";
-import type {
-  LoginSchema,
-  RegisterSchema,
-  ResetPasswordSchema,
-  UpdatePasswordSchema,
-} from "@/lib/validations/auth.schema";
+import type { LoginSchema, ResetPasswordSchema, UpdatePasswordSchema } from "@/lib/validations/auth.schema";
 import type { LoadingState } from "@/types/app.types";
 
 interface AuthState {
@@ -35,11 +29,6 @@ interface AuthState {
 
 interface UseAuthReturn extends AuthState {
   login:          (data: LoginSchema)         => Promise<{ success: boolean; error?: string }>;
-  register:       (data: RegisterSchema)      => Promise<{
-    success: boolean;
-    error?: string;
-    needsEmailConfirmation?: boolean;
-  }>;
   logout:         ()                          => Promise<void>;
   resetPassword:  (data: ResetPasswordSchema) => Promise<{ success: boolean; error?: string }>;
   updatePassword: (data: UpdatePasswordSchema)=> Promise<{ success: boolean; error?: string }>;
@@ -95,44 +84,6 @@ export function useAuth(): UseAuthReturn {
 
       setState((prev) => ({ ...prev, loading: false }));
       return { success: true };
-    },
-    [supabase]
-  );
-
-  // ── Register ───────────────────────────────────────────────────────────────
-  const register = useCallback(
-    async (
-      data: RegisterSchema
-    ): Promise<{
-      success: boolean;
-      error?: string;
-      needsEmailConfirmation?: boolean;
-    }> => {
-      setState((prev) => ({ ...prev, loading: true, error: null }));
-
-      const appUrl = process.env.NEXT_PUBLIC_APP_URL?.replace(/\/$/, "");
-      const { error, data: signUpData } = await supabase.auth.signUp({
-        email: data.email,
-        password: data.password,
-        options: {
-          ...(appUrl ? { emailRedirectTo: `${appUrl}/login` } : {}),
-          data: {
-            full_name: data.fullName || undefined,
-          },
-        },
-      });
-
-      if (error) {
-        const message = mapAuthError(error.message);
-        setState((prev) => ({ ...prev, loading: false, error: message }));
-        return { success: false, error: message };
-      }
-
-      const session = signUpData.session;
-      const needsEmailConfirmation = Boolean(signUpData.user && !session);
-
-      setState((prev) => ({ ...prev, loading: false }));
-      return { success: true, needsEmailConfirmation };
     },
     [supabase]
   );
@@ -196,7 +147,6 @@ export function useAuth(): UseAuthReturn {
   return {
     ...state,
     login,
-    register,
     logout,
     resetPassword,
     updatePassword,
@@ -218,12 +168,6 @@ function mapAuthError(message: string): string {
     return "Too many login attempts. Please wait a moment and try again.";
   if (lower.includes("user not found"))
     return "No account found with this email address.";
-  if (
-    lower.includes("already registered") ||
-    lower.includes("user already registered") ||
-    lower.includes("email address is already registered")
-  )
-    return "An account with this email already exists. Try signing in instead.";
   if (lower.includes("network"))
     return "Network error. Please check your connection and try again.";
 

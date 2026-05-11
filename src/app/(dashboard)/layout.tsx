@@ -3,25 +3,25 @@ import { createServerClient } from "@supabase/ssr";
 import { cookies } from "next/headers";
 import { DashboardLayout } from "@/components/templates/DashboardLayout";
 import { RealtimeShell } from "@/components/organisms/RealtimeShell";
-import { resolvePublicSupabaseKeys } from "@/lib/supabase/public-env";
 
 export default async function DashboardGroupLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
-  const cookieStore = await cookies();
-  const publicCfg = resolvePublicSupabaseKeys();
-  const hasSupabase =
-    publicCfg && publicCfg.url !== "https://your-project-ref.supabase.co";
+  const cookieStore = cookies();
+  const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
+  const hasSupabase = 
+    supabaseUrl && 
+    supabaseUrl !== "https://your-project-ref.supabase.co";
 
   let alertCount = 0;
 
-  if (hasSupabase && publicCfg) {
+  if (hasSupabase) {
     try {
       const supabase = createServerClient(
-        publicCfg.url,
-        publicCfg.anonKey,
+        process.env.NEXT_PUBLIC_SUPABASE_URL!,
+        process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
         {
           cookies: {
             getAll() {

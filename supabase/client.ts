@@ -8,21 +8,21 @@
  */
 import { createBrowserClient } from "@supabase/ssr";
 import type { Database } from "@/types/database.types";
-import { resolvePublicSupabaseKeys } from "@/lib/supabase/public-env";
 
 let client: ReturnType<typeof createBrowserClient<Database>> | undefined;
 
 export function getSupabaseBrowserClient() {
   if (client) return client;
 
-  const cfg = resolvePublicSupabaseKeys();
-  if (!cfg) {
+  const url = process.env.NEXT_PUBLIC_SUPABASE_URL?.trim();
+  const anonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY?.trim();
+  if (!url || !anonKey) {
     throw new Error(
-      "Missing Supabase env: set NEXT_PUBLIC_SUPABASE_URL and either NEXT_PUBLIC_SUPABASE_ANON_KEY (legacy) or NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY in .env.local. See Dashboard → Settings → API."
+      "Missing NEXT_PUBLIC_SUPABASE_URL or NEXT_PUBLIC_SUPABASE_ANON_KEY. Copy .env.example to .env.local and set values from Supabase Dashboard → Settings → API."
     );
   }
 
-  client = createBrowserClient<Database>(cfg.url, cfg.anonKey);
+  client = createBrowserClient<Database>(url, anonKey);
 
   return client;
 }

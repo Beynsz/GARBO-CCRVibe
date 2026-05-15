@@ -10,7 +10,7 @@
  */
 
 import { useRealtimeAlerts } from "@/hooks/useRealtimeAlerts";
-import { ToastContainer }    from "@/components/organisms/ToastContainer";
+import { ToastContainer }    from "@/components/molecules/ToastContainer";
 
 interface RealtimeShellProps {
   children:     React.ReactNode;

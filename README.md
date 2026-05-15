@@ -16,3 +16,4 @@ To provide a more efficient and organized waste management system using digital 
 
 System Type
 Web-based application integrated with database for real-time data handling.
+test

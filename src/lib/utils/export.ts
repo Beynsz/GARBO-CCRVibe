@@ -277,7 +277,7 @@ export function generateScheduleAnnouncement(
   date: string,
 ): string {
   if (items.length === 0) {
-    return `📢 GARBO — Barangay Banilad\n\nNo garbage collection scheduled for ${formatDate(date)}.\n\nFor inquiries, contact the Barangay Sanitation Committee.`;
+    return `GARBO — Barangay Banilad\n\nNo garbage collection scheduled for ${formatDate(date)}.\n\nFor inquiries, contact the Barangay Sanitation Committee.`;
   }
 
   const lines = items.map(
@@ -285,9 +285,9 @@ export function generateScheduleAnnouncement(
   );
 
   return [
-    `📢 GARBO — Barangay Banilad`,
+    `GARBO — Barangay Banilad`,
     ``,
-    `�-�️ Garbage Collection Schedule — ${formatDate(date)}`,
+    `Garbage Collection Schedule — ${formatDate(date)}`,
     ``,
     `The following Sitios will be served today:`,
     ...lines,

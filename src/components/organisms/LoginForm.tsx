@@ -99,11 +99,11 @@ export function LoginForm() {
         </div>
 
         <h1
-          className="font-[var(--font-heading)] text-3xl font-bold text-[var(--color-text-primary)] text-center"
+          className="text-3xl font-bold text-[var(--color-text-primary)] text-center"
           style={{ fontFamily: "var(--font-heading)" }}
         >
           Welcome to{" "}
-          <span className="text-[var(--color-primary)]">"GARBO"</span>
+          <span className="text-[var(--color-primary)]">&quot;GARBO&quot;</span>
         </h1>
 
         <p className="mt-2 text-sm text-[var(--color-text-muted)] text-center leading-relaxed">

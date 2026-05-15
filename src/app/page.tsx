@@ -14,7 +14,7 @@ import LandingPage from "./(public)/page";
 export { metadata } from "./(public)/page";
 
 export default async function RootPage() {
-  const cookieStore = cookies();
+  const cookieStore = await cookies();
 
   // Secondary safety check in case middleware is bypassed
   try {

@@ -133,7 +133,7 @@ export function ScheduleForm({
     <>
       {/* Backdrop */}
       <div
-        className="fixed inset-0 z-[var(--z-overlay)] bg-black/40 backdrop-blur-[2px]"
+        className="fixed inset-0 z-[var(--z-overlay)]"
         onClick={onClose}
         aria-hidden="true"
       />

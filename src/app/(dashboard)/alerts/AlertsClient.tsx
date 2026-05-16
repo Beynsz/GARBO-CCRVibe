@@ -22,7 +22,7 @@ export function AlertsClient({ incidents, sitios }: AlertsClientProps) {
   }).length;
 
   return (
-    <div className="animate-fade-in max-w-[1360px]">
+    <div className="w-full max-w-[1360px]">
       <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-6">
         <div className="page-header mb-0">
           <div className="flex items-center gap-3">

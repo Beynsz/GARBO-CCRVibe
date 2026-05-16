@@ -94,9 +94,9 @@ export function AnnouncementForm({ onClose, onSuccess }: AnnouncementFormProps) 
 
   return (
     <>
-      <div className="fixed inset-0 z-[var(--z-overlay)] bg-black/40 backdrop-blur-[2px]" onClick={onClose} aria-hidden="true" />
-      <div className="fixed z-[var(--z-modal)] inset-0 flex items-center justify-center p-4 pointer-events-none">
-        <div
+    <div className="fixed inset-0 z-[var(--z-overlay)]" onClick={onClose} aria-hidden="true" />
+    <div className="fixed z-[var(--z-modal)] inset-0 flex items-center justify-center p-4 pointer-events-none lg:pl-[var(--sidebar-width)]">
+      <div
           className="pointer-events-auto w-full max-w-2xl bg-[var(--color-bg-surface)] rounded-xl shadow-[var(--shadow-modal)] border border-[var(--color-border)] animate-fade-in"
           role="dialog" aria-modal="true" aria-labelledby="ann-form-title"
         >

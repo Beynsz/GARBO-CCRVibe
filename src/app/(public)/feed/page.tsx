@@ -75,7 +75,8 @@ const environmentalImpact = useMemo(() => {
           </Link>
           <nav className="hidden md:flex items-center gap-6">
             <NavLink href="/">HOME</NavLink>
-            <NavLink href="/feed">FEED</NavLink> 
+            <NavLink href="/#about">ABOUT US</NavLink>
+            <NavLink href="/feed">FEED</NavLink>
             <NavLink href="/register">SIGN UP</NavLink>
             <NavLink href="/login">LOG IN</NavLink>
           </nav>

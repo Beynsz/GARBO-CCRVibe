@@ -99,9 +99,11 @@ export default function LandingPage() {
 
           {/* Nav links — matches Image 1 */}
           <nav className="flex items-center gap-6" aria-label="Main">
-            <NavLink href="/login">LOG IN</NavLink>
-            <NavLink href="#about">ABOUT US</NavLink>
             <NavLink href="/">HOME</NavLink>
+            <NavLink href="/#about">ABOUT US</NavLink>
+            <NavLink href="/feed">FEED</NavLink>
+            <NavLink href="/register">SIGN UP</NavLink>
+            <NavLink href="/login">LOG IN</NavLink>
           </nav>
         </div>
       </header>

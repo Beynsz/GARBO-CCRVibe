@@ -48,6 +48,7 @@ import {
   ArrowLeft,
   ArrowRight,
   Menu,
+  Truck,
 } from "lucide-react";
 
 export type IconName =
@@ -57,7 +58,7 @@ export type IconName =
   | "info" | "check-circle" | "x-circle" | "alert-circle" | "filter" | "download"
   | "file-text" | "clipboard" | "map-pin" | "clock" | "fuel" | "weight"
   | "calendar" | "refresh" | "eye" | "eye-off" | "more" | "arrow-left"
-  | "arrow-right" | "menu";
+  | "arrow-right" | "menu" | "truck";
 
 const ICON_MAP: Record<IconName, React.ElementType> = {
   home:            Home,
@@ -99,6 +100,7 @@ const ICON_MAP: Record<IconName, React.ElementType> = {
   "arrow-left":    ArrowLeft,
   "arrow-right":   ArrowRight,
   menu:            Menu,
+  truck:           Truck,
 };
 
 interface IconProps {

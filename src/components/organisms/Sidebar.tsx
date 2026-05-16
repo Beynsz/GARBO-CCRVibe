@@ -23,6 +23,7 @@ const NAV_ITEMS: NavItemType[] = [
   { label: "Home",          href: "/home",          icon: "home"          },
   { label: "Schedule",      href: "/schedule",      icon: "schedule"      },
   { label: "Announcements", href: "/announcements", icon: "announcements" },
+  { label: "Fleet",         href: "/fleet",         icon: "truck"         },
   { label: "Reports",       href: "/reports",       icon: "reports"       },
   { label: "Alerts",        href: "/alerts",        icon: "alerts"        },
   { label: "Logbook",       href: "/logbook",       icon: "clipboard"     },

@@ -13,7 +13,7 @@
 import { useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import Link from "next/link";
-import { Trash2, Calendar, BarChart2, Megaphone, FileDown } from "lucide-react";
+import { Trash2, Calendar, BarChart2, Megaphone, FileDown, ArrowLeft } from "lucide-react";
 import { useAuth } from "@/hooks/useAuth";
 import { loginSchema, type LoginSchema } from "@/lib/validations/auth.schema";
 import { Button } from "@/components/atoms/Button";
@@ -180,6 +180,15 @@ export function LoginForm() {
         </div>
 
         <div className="w-full max-w-sm">
+          {/* Back to Home Breadcrumb */}
+          <Link
+            href="/"
+            className="inline-flex items-center gap-1.5 text-xs font-medium text-[var(--color-text-muted)] hover:text-[var(--color-primary)] transition-colors mb-5 focus-visible:outline-none focus-visible:underline"
+          >
+            <ArrowLeft size={14} />
+            Back to Home
+          </Link>
+
           {/* Heading */}
           <div className="mb-7">
             <h1
@@ -195,13 +204,13 @@ export function LoginForm() {
 
           {/* Form */}
           <form onSubmit={handleSubmit} noValidate className="space-y-4">
-            <FormGroup label="Username" htmlFor="email" required error={errors.email}>
+            <FormGroup label="Email Address" htmlFor="email" required error={errors.email}>
               <Input
                 id="email"
                 name="email"
                 type="email"
                 autoComplete="username email"
-                placeholder="ENTER USERNAME"
+                placeholder="Enter email"
                 value={formData.email}
                 onChange={handleChange}
                 error={errors.email}
@@ -216,7 +225,7 @@ export function LoginForm() {
                 name="password"
                 type="password"
                 autoComplete="current-password"
-                placeholder="ENTER PASSWORD"
+                placeholder="Enter password"
                 value={formData.password}
                 onChange={handleChange}
                 error={errors.password}

@@ -37,7 +37,6 @@ export function DashboardLayout({
           className={cn(
             "flex-1 overflow-y-auto",
             "px-[var(--page-padding-x)] py-[var(--page-padding-y)]",
-            "animate-fade-in",
             className
           )}
           id="main-content"

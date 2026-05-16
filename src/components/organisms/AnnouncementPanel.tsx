@@ -57,7 +57,7 @@ export function AnnouncementPanel({ announcements, isLoading = false }: Announce
 
   if (announcements.length === 0) {
     return (
-      <div className="empty-state py-16">
+      <div className="empty-state py-16 w-full mx-auto flex flex-col items-center justify-center text-center">
         <span className="empty-state__icon">📢</span>
         <p className="empty-state__title">No announcements yet</p>
         <p className="empty-state__desc">Create an announcement to notify residents of delays, schedule changes, or reminders.</p>
